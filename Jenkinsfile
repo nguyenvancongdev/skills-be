@@ -12,9 +12,9 @@ pipeline {
             steps {
                 container('docker') {
                    sh '''
-                   docker build -t nguyenvancongdev/hotocnguyenvan:${BUILD_NUMBER} `pwd`
+                   docker build -t nguyenvancongdev/skills-be:${BUILD_NUMBER} `pwd`
                    docker login --username=$Docker_Hub_USR --password=$Docker_Hub_PSW
-                   docker push nguyenvancongdev/hotocnguyenvan:${BUILD_NUMBER}
+                   docker push nguyenvancongdev/skills-be:${BUILD_NUMBER}
                    '''
                 }    
             }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 container('kubectl') {
                    
-                       sh 'kubectl set image deployment hotocnguyenvan nginx-1=nguyenvancongdev/hotocnguyenvan:${BUILD_NUMBER}'
+                       sh 'kubectl set image deployment skills-be nginx-1=nguyenvancongdev/skills-be:${BUILD_NUMBER}'
                     
                 }   
             }
